@@ -1,12 +1,12 @@
 import React from 'react';
 import { Router, Route, Link } from 'react-router-dom';
 
-import { history, Role } from '@/_helpers';
-import { authenticationService } from '@/_services';
-import { PrivateRoute } from '@/_components';
-import { HomePage } from '@/HomePage';
-import { AdminPage } from '@/AdminPage';
-import { LoginPage } from '@/LoginPage';
+import { history, Role } from '@/Helpers';
+import { authenticationService } from '@/Services';
+import { PrivateRoute } from '@/Components';
+import { HomePage } from '../Screens/HomePage';
+import { AdminPage } from '../Screens/AdminPage';
+import { LoginPage } from '../Screens/LoginPage';
 
 class App extends React.Component {
     constructor(props) {

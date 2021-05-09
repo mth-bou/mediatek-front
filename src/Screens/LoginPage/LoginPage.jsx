@@ -2,7 +2,7 @@ import React from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
-import { authenticationService } from '@/_services';
+import { authenticationService } from '@/Services';
 
 class LoginPage extends React.Component {
     constructor(props) {
