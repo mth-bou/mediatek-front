@@ -4,9 +4,11 @@ import { Router, Route, Link } from 'react-router-dom';
 import { history, Role } from '@/Helpers';
 import { authenticationService } from '@/Services';
 import { PrivateRoute } from '@/Components';
-import { HomePage } from '../Screens/HomePage';
-import { AdminPage } from '../Screens/AdminPage';
-import { LoginPage } from '../Screens/LoginPage';
+import { HomePage } from '@/Screens/HomePage';
+import { AdminPage } from '@/Screens/AdminPage';
+import { LoginPage } from '@/Screens/LoginPage';
+import { UploadPage } from '@/Screens/UploadPage';
+import { ManageUsersPage } from '@/Screens/ManageUsersPage'
 
 class App extends React.Component {
     constructor(props) {
@@ -38,9 +40,17 @@ class App extends React.Component {
                     {currentUser &&
                         <nav className="navbar navbar-expand navbar-dark bg-dark">
                             <div className="navbar-nav">
-                                <Link to="/" className="nav-item nav-link">Home</Link>
-                                {isAdmin && <Link to="/admin" className="nav-item nav-link">Admin</Link>}
-                                <a onClick={this.logout} className="nav-item nav-link">Logout</a>
+                                <Link to="/" className="nav-item nav-link">Accueil</Link>
+                                {isAdmin &&
+                                <Link to="/admin" className="nav-item nav-link">Admin</Link>
+                                }
+                                {isAdmin &&
+                                <Link to="/upload" className="nav-item nav-link">Uploader une image</Link>
+                                }
+                                {isAdmin &&
+                                <Link to="/manage_users" className="nav-item nav-link">Gestion des utilisateurs</Link>
+                                }
+                                <a onClick={this.logout} className="nav-item nav-link">Se déconnecter</a>
                             </div>
                         </nav>
                     }
@@ -50,6 +60,8 @@ class App extends React.Component {
                                 <div className="col-md-6 offset-md-3">
                                     <PrivateRoute exact path="/" component={HomePage} />
                                     <PrivateRoute path="/admin" roles={[Role.Admin]} component={AdminPage} />
+                                    <PrivateRoute path="/upload" roles={[Role.Admin]} component={UploadPage} />
+                                    <PrivateRoute path="/manage_users" roles={[Role.Admin]} component={ManageUsersPage} />
                                     <Route path="/login" component={LoginPage} />
                                 </div>
                             </div>
