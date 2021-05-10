@@ -8,7 +8,7 @@ function UploadPage(props) {
     const [description, setDescription] = useState(null)
     const [copyright, setCopyright] = useState(null)
     const [image, setImage] = useState(null)
-    const [visible, setVisible] = useState(false)
+    const [visible, setVisible] = useState(true)
     const [archived, setArchived] = useState(false)
 
     const data = {
@@ -60,8 +60,8 @@ function UploadPage(props) {
                     <input type="text" className="form-control" id="inputCopyright"
                            placeholder="Copyright de l'image" onChange={event => setCopyright(event.target.value)}/>
                 </div>
-                <div className="form-check">
-                    <input type="checkbox" className="form-check-input" id="isVisible" onChange={() => setVisible(!visible)}/>
+                <div style={{marginBottom:10}} className="form-check">
+                    <input type="checkbox" className="form-check-input" id="isVisible" defaultChecked={visible} onChange={() => setVisible(!visible)}/>
                     <label className="form-check-label" htmlFor="isVisible">Publier l'image</label>
                 </div>
                 <button type="submit" className="btn btn-primary">Envoyer</button>
