@@ -4,7 +4,9 @@ import { authHeader, handleResponse } from '@/Helpers';
 export const userService = {
     getAll,
     getById,
-    post
+    post,
+    edit,
+    deleteById
 };
 
 function getAll() {
@@ -17,17 +19,31 @@ function getById(id) {
     return fetch(`${config.apiUrl}/users/${id}`, requestOptions).then(handleResponse);
 }
 
-function post(nom, prenom, login, password, role) {
+function post(user) {
     const requestOptions = {
         method: 'POST',
         headers: authHeader(),
-        body: JSON.stringify({
-            nom: nom,
-            prenom: prenom,
-            login: login,
-            password: password,
-            role: role
-        })
-    };
-    return fetch(`${config.apiUrl}/images/`, requestOptions).then(handleResponse);
+        body: { user.lastname, user.firstname, user.login, user.password, user.role }
+    }
+
+    return fetch(`${config.apiUrl}/users`, requestOptions).then(handleResponse);
+}
+
+function edit(user) {
+    const requestOptions = {
+        method: 'PUT',
+        headers: authHeader(),
+        body: { user.lastname, user.firstname, user.login, user.password, user.role }
+    }
+
+    return fetch(`${config.apiUrl}/users/${user.id}`, requestOptions).then(handleResponse);
+}
+
+function deleteById(user) {
+    const requestOptions = {
+        method: 'DELETE',
+        headers: authHeader(),
+    }
+
+    return fetch(`${config.apiUrl}/users/${user.id}`, requestOptions).then(handleResponse);
 }
