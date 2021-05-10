@@ -4,8 +4,8 @@ import { authHeader, handleResponse } from '@/Helpers';
 export const userService = {
     getAll,
     getById,
-    post,
-    edit,
+    /*post,
+    edit,*/
     deleteById
 };
 
@@ -18,7 +18,7 @@ function getById(id) {
     const requestOptions = { method: 'GET', headers: authHeader() };
     return fetch(`${config.apiUrl}/users/${id}`, requestOptions).then(handleResponse);
 }
-
+/*
 function post(user) {
     const requestOptions = {
         method: 'POST',
@@ -37,7 +37,7 @@ function edit(user) {
     }
 
     return fetch(`${config.apiUrl}/users/${user.id}`, requestOptions).then(handleResponse);
-}
+}*/
 
 function deleteById(user) {
     const requestOptions = {

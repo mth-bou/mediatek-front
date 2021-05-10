@@ -1,24 +1,16 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 
 import { userService, authenticationService } from '@/Services';
 
-class HomePage extends React.Component {
-    constructor(props) {
-        super(props);
+function HomePage() {
 
-        this.state = {
-            currentUser: authenticationService.currentUserValue,
-            userFromApi: null
-        };
-    }
+    const [currentUser, setCurrentUser] = useState(authenticationService.currentUserValue)
+    const [userFromApi, setUserFromApi] = useState(null)
 
-    componentDidMount() {
-        const { currentUser } = this.state;
+    useEffect(()=> {
         userService.getById(currentUser.id).then(userFromApi => this.setState({ userFromApi }));
-    }
+    })
 
-    render() {
-        const { currentUser, userFromApi } = this.state;
         return (
             <div>
                 <h1>Home</h1>
@@ -35,7 +27,6 @@ class HomePage extends React.Component {
                 </div>
             </div>
         );
-    }
 }
 
 export { HomePage };
