@@ -1,39 +1,24 @@
-import React from 'react';
-
+import React, {useState, useEffect} from 'react';
 import { userService } from '@/Services';
+import {Button, Form}from 'react-bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
-class UploadPage extends React.Component {
-    constructor(props) {
-        super(props);
+function UploadPage (props){
+    const [users, setUsers] = useState(null)
 
-        this.state = {
-            users: null
-        };
-    }
+    useEffect(() => {
+        userService.getAll().then(users => setUsers( users ));
+    }, [])
 
-    componentDidMount() {
-        userService.getAll().then(users => this.setState({ users }));
-    }
-
-    render() {
-        const { users } = this.state;
         return (
             <div>
-                <h1>Upload Page</h1>
+                <h1>Upload d'image</h1>
                 <p>This page can only be accessed by administrators.</p>
-                <div>
-                    All users from secure (admin only) api end point:
-                    {users &&
-                    <ul>
-                        {users.map(user =>
-                            <li key={user.id}>{user.firstName} {user.lastName}</li>
-                        )}
-                    </ul>
-                    }
-                </div>
+                <Form>
+                    
+                </Form>
             </div>
         );
-    }
 }
 
 export { UploadPage };
