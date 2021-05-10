@@ -56,15 +56,13 @@ class App extends React.Component {
                     }
                     <div className="jumbotron">
                         <div className="container">
-                            <div className="row">
-                                <div className="col-md-6 offset-md-3">
+                                <div className="d-flex justify-content-center">
                                     <PrivateRoute exact path="/" component={HomePage} />
                                     <PrivateRoute path="/admin" roles={[Role.Admin]} component={AdminPage} />
                                     <PrivateRoute path="/upload" roles={[Role.Admin]} component={UploadPage} />
                                     <PrivateRoute path="/manage_users" roles={[Role.Admin]} component={ManageUsersPage} />
                                     <Route path="/login" component={LoginPage} />
                                 </div>
-                            </div>
                         </div>
                     </div>
                 </div>
