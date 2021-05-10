@@ -7,11 +7,12 @@ function UploadPage(props) {
     const [name, setName] = useState(null)
     const [description, setDescription] = useState(null)
     const [copyright, setCopyright] = useState(null)
+    const [category, setCategory] = useState(null)
     const [image, setImage] = useState(null)
     const [visible, setVisible] = useState(true)
     const [archived, setArchived] = useState(false)
 
-    const data = {
+    const imageData = {
         name: name,
         description: description,
         copyright: copyright,
@@ -19,18 +20,10 @@ function UploadPage(props) {
         visible: visible,
         archived: archived
     }
-
-    /*const uploadImage = async () => {
-        const data = {
-            name: 'xx',
-            description: 'xx',
-            copyright: 'xx',
-            image: 'xxx.jpg',
-            visible: true,
-            archived: false
-        }
+/*
+    const uploadImage = async () => {
         try {
-            const response = await imageService.post(data)
+            const response = await imageService.postImage(data)
             return response && response.status
         } catch (error) {
             setError(true)
@@ -54,6 +47,11 @@ function UploadPage(props) {
                 <div className="form-group">
                     <label className="form-label" htmlFor="imageFile">Fichier image</label>
                     <input type="file" className="form-control" id="imageFile" onChange={event => setImage(event.target.value)}/>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="inputCategory">Catégorie</label>
+                    <input type="text" className="form-control" id="inputCategory"
+                           placeholder="Catégorie de l'image" onChange={event => setCategory(event.target.value)}/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="inputCopyright">Copyright</label>
