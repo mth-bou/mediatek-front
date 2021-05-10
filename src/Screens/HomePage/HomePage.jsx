@@ -9,7 +9,7 @@ function HomePage() {
 
     useEffect(()=> {
         userService.getById(currentUser.id).then(userFromApi => this.setState({ userFromApi }));
-    })
+    }, [])
 
         return (
             <div>
