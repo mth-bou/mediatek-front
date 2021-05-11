@@ -21,15 +21,14 @@ function getById(id) {
 }
 
 function post(user) {
-
-    axios.post(`${config.apiUrl}/user`, user)
-        .then(res => {
-            return res.data
-        })
-        .catch(err => {
-            return err
-        })
-
+    try {
+        axios.post(`${config.apiUrl}/user`, user)
+            .then(resp => {
+                console.log(resp)
+            })
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 function edit(id, user) {

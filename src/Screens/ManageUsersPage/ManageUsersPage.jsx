@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Button from 'react-bootstrap/Button'
-import {userService} from '@/Services';
+import {userService} from '../../Services/user.service';
 import UserCollapse from '../../Components/user_collapse'
-import {Role} from "@/Helpers";
 
 function ManageUsersPage() {
 
@@ -27,10 +26,9 @@ function ManageUsersPage() {
             password: password,
             firstname: firstName,
             name: lastName,
-            roles: ['GESTIONNAIRE'],
+            roles: isAdmin ? ["GESTIONNAIRE"] : ["UTILISATEUR"],
             enabled: true
         }
-
         userService.post(dataUser).then(res => console.log(res))
     }
 
@@ -77,7 +75,7 @@ function ManageUsersPage() {
                 {users &&
                 <div>
                     {users.map(user =>
-                        <div style={{margin:10}}>
+                        <div style={{margin:10}} key={user.id}>
                             <UserCollapse user={user}/>
                         </div>
                     )}

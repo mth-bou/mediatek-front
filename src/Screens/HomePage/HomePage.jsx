@@ -37,7 +37,9 @@ function HomePage() {
                     {
                         imageList && currentUser.role === 'Admin' &&
                         imageList.map(image =>
-                            <CardImage image={image} />
+                            <div key={image.id}>
+                                <CardImage image={image}/>
+                            </div>
                         )
                     }
                 </div>
