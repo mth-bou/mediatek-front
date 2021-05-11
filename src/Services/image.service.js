@@ -2,6 +2,10 @@ import config from '../../config';
 import {authHeader, handleResponse} from "@/Helpers";
 import axios from "axios";
 
+const header = {
+    'Content-Type': 'multipart/form-data'
+}
+
 function getAll() {
     try {
         axios.get(`${config.apiUrl}/images`)
@@ -15,7 +19,9 @@ function getAll() {
 
 function postImage(data) {
     try {
-        axios.post(`${config.apiUrl}/images`, data)
+        axios.post(`${config.apiUrl}/images`, data, {
+            headers: header
+        })
             .then(resp => {
                 console.log(resp)
             })
