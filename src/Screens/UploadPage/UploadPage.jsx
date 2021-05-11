@@ -13,21 +13,20 @@ function UploadPage(props) {
     const [archived, setArchived] = useState(false)
 
     const uploadImage = () => {
-        let fileUpload = file;
         let keywordsArray = keywords.replace(/ /g,"").split(",")
         let imageData = {
+            file: file,
             name: name,
             description: description,
             copyright: copyright,
-            file: file,
             keywords: keywordsArray,
-            datePublished: Date.now(),
+            datePublished: new Date,
             category: category,
             visibility: visible,
             archived: archived
         }
         try {
-            imageService.postImage(fileUpload, imageData)
+            imageService.postImage(imageData)
                 .then(resp => {
                     console.log(resp)
                 })
@@ -39,7 +38,7 @@ function UploadPage(props) {
     return (
         <div>
             <h1>Upload d'image</h1>
-            <form>
+            <form onSubmit={uploadImage}>
                 <div className="form-group">
                     <label htmlFor="inputName">Nom</label>
                     <input type="text" className="form-control" id="inputName"
