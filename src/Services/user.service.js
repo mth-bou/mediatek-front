@@ -1,49 +1,71 @@
-import config from 'config';
+import config from '../../config';
+import axios from 'axios';
 import { authHeader, handleResponse } from '@/Helpers';
 
 export const userService = {
     getAll,
     getById,
-    /*post,
-    edit,*/
+    post,
+    edit,
     deleteById
 };
 
 function getAll() {
-    const requestOptions = { method: 'GET', headers: authHeader() };
-    return fetch(`${config.apiUrl}/users`, requestOptions).then(handleResponse);
+
+    const options = {
+        headers: { 'Access-Control-Allow-Origin': '*'}
+    }
+
+    axios.get(`${config.apiUrl}/users`, options)
+        .then(res => {
+            return res.data
+        })
+        .catch(err => {
+            return err
+        });
 }
 
 function getById(id) {
-    const requestOptions = { method: 'GET', headers: authHeader() };
-    return fetch(`${config.apiUrl}/users/${id}`, requestOptions).then(handleResponse);
+
+    axios.get(`${config.apiUrl}/users/${id}`)
+        .then(res => {
+            return res.data
+        })
+        .catch(err => {
+            return err
+        })
 }
-/*
+
 function post(user) {
-    const requestOptions = {
-        method: 'POST',
-        headers: authHeader(),
-        body: { user.lastname, user.firstname, user.login, user.password, user.role }
-    }
 
-    return fetch(`${config.apiUrl}/users`, requestOptions).then(handleResponse);
+    axios.post(`${config.apiUrl}/users/`, user)
+        .then(res => {
+            return res.data
+        })
+        .catch(err => {
+            return err
+        })
+
 }
 
-function edit(user) {
-    const requestOptions = {
-        method: 'PUT',
-        headers: authHeader(),
-        body: { user.lastname, user.firstname, user.login, user.password, user.role }
-    }
+function edit(id, user) {
 
-    return fetch(`${config.apiUrl}/users/${user.id}`, requestOptions).then(handleResponse);
-}*/
+    axios.put(`${config.apiUrl}/users/${id}`, user)
+        .then(res => {
+            return res.data
+        })
+        .catch(err => {
+            return err
+        })
+}
 
-function deleteById(user) {
-    const requestOptions = {
-        method: 'DELETE',
-        headers: authHeader(),
-    }
+function deleteById(id) {
 
-    return fetch(`${config.apiUrl}/users/${user.id}`, requestOptions).then(handleResponse);
+    axios.delete(`${config.apiUrl}/users/${id}`)
+        .then(res => {
+            return res.data
+        })
+        .catch(err => {
+            return err
+        })
 }
