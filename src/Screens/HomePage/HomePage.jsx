@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-
+import { Role } from '../../Helpers'
 import { userService, authenticationService, imageService } from '@/Services';
 import CardImage from "@/Components/cardImage";
 import imageMock from "@/Helpers/imageMock";
@@ -35,7 +35,7 @@ function HomePage() {
                     }
 
                     {
-                        imageList && currentUser.role === 'Admin' &&
+                        imageList && currentUser.role === Role.Admin &&
                         imageList.map(image =>
                             <div className="col-4" key={image.id}>
                                 <CardImage image={image}/>
