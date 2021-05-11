@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export default function CardImage(props) {
+    const [id, setId] = useState(props.image.id);
     const [name, setName] = useState(props.image.name);
     const [url, setUrl] = useState(props.image.url);
     const [description, setDescription] = useState(props.image.description);
@@ -12,6 +14,7 @@ export default function CardImage(props) {
     const [copyright, setCopyright] = useState(props.image.copyright);
 
     const data = {
+        id: props.image.id,
         name: name,
         url: url,
         description: description,
@@ -32,6 +35,12 @@ export default function CardImage(props) {
                     <div className="card-body">
                         <h5 className="card-text">{data.name}</h5>
                     </div>
+                    <Link to={{
+                        pathname: "/image/" + id,
+                        aboutProps: {
+                            name: name
+                        }
+                    }}>  Voir plus  </Link>
                 </div>
             }
         </div>
