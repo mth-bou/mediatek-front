@@ -1,5 +1,5 @@
 const config = {
-    apiUrl: 'https://mediatek.fr/api'
+    apiUrl: 'https://javaprojectbackend.herokuapp.com'
 }
 
 export default config;
