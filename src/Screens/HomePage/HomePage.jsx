@@ -1,32 +1,52 @@
 import React, {useState, useEffect} from 'react';
 
-import { userService, authenticationService } from '@/Services';
+import { userService, authenticationService, imageService } from '@/Services';
+import CardImage from "@/Components/cardImage";
+import imageMock from "@/Helpers/imageMock";
 
 function HomePage() {
 
     const [currentUser, setCurrentUser] = useState(authenticationService.currentUserValue)
     const [userFromApi, setUserFromApi] = useState(null)
+    const [imageList, setImageList] = useState(imageMock)
 
     useEffect(()=> {
-        userService.getById(currentUser.id).then(userFromApi => this.setState({ userFromApi }));
+        userService.getById(currentUser.id).then(userFromApi => setUserFromApi(userFromApi));
+        //imageService.getAll().then(res => setImageList(res));
     }, [])
 
         return (
             <div>
-                <h1>Home</h1>
-                <p>You're logged in with React & JWT!!</p>
-                <p>Your role is: <strong>{currentUser.role}</strong>.</p>
-                <p>This page can be accessed by all authenticated users.</p>
-                <div>
-                    Current user from secure api end point:
-                    {userFromApi &&
-                        <ul>
-                            <li>{userFromApi.firstName} {userFromApi.lastName}</li>
-                        </ul>
+                <div style={{background:'#E9ECEF', textAlign: 'center'}}>
+                    <h1 className="text-center">Bienvenue sur Mediatek</h1>
+                    <p>Une application qui vous permet de gérer une banque d'images comme vous le souhaitez</p>
+                    <div>
+                        {userFromApi &&
+                            <p>Bonjour {userFromApi.firstName} {userFromApi.lastName}, votre rôle actuel est : <strong>{currentUser.role}</strong>.</p>
+                        }
+                    </div>
+                </div>
+
+                <div className="d-inline-flex flex-wrap mt-4">
+                    {imageList && currentUser.role === 'User' &&
+                        imageList.slice(0, 10).map(image =>
+                            <CardImage image={image} />
+                        )
+                    }
+
+                    {
+                        imageList && currentUser.role === 'Admin' &&
+                        imageList.map(image =>
+                            <CardImage image={image} />
+                        )
                     }
                 </div>
             </div>
         );
+}
+
+const imageListStyle = {
+
 }
 
 export { HomePage };
