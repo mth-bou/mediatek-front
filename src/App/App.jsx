@@ -1,13 +1,14 @@
 import React from 'react';
 import { Router, Route, Link } from 'react-router-dom';
 
-import { history, Role } from '@/Helpers';
-import { authenticationService } from '@/Services';
-import { PrivateRoute } from '@/Components';
-import { HomePage } from '@/Screens/HomePage';
-import { LoginPage } from '@/Screens/LoginPage';
-import { UploadPage } from '@/Screens/UploadPage';
-import { ManageUsersPage } from '@/Screens/ManageUsersPage'
+import { history, Role } from '../Helpers';
+import { authenticationService } from '../Services';
+import { PrivateRoute } from '../Components';
+import { HomePage } from '../Screens/HomePage';
+import { LoginPage } from '../Screens/LoginPage';
+import { UploadPage } from '../Screens/UploadPage';
+import { ManageUsersPage } from '../Screens/ManageUsersPage'
+import {ImagePage} from "../Screens/ImagePage";
 
 class App extends React.Component {
     constructor(props) {
@@ -56,6 +57,7 @@ class App extends React.Component {
                                     <PrivateRoute exact path="/" component={HomePage} />
                                     <PrivateRoute path="/upload" roles={[Role.Admin]} component={UploadPage} />
                                     <PrivateRoute path="/manage_users" roles={[Role.Admin]} component={ManageUsersPage} />
+                                    <PrivateRoute path="/image/:slug" roles={[Role.Admin, Role.User]} component={ImagePage}/>
                                     <Route path="/login" component={LoginPage} />
                                 </div>
                         </div>

@@ -3,32 +3,38 @@ import {userService, imageService} from '@/Services';
 import Button from 'react-bootstrap/Button'
 
 function UploadPage(props) {
-    const [users, setUsers] = useState(null)
     const [name, setName] = useState(null)
     const [description, setDescription] = useState(null)
     const [copyright, setCopyright] = useState(null)
     const [category, setCategory] = useState(null)
-    const [image, setImage] = useState(null)
+    const [keywords, setKeywords] = useState("")
+    const [file, setFile] = useState(null)
     const [visible, setVisible] = useState(true)
     const [archived, setArchived] = useState(false)
 
-    const imageData = {
-        name: name,
-        description: description,
-        copyright: copyright,
-        image: image,
-        visible: visible,
-        archived: archived
-    }
-/*
-    const uploadImage = async () => {
-        try {
-            const response = await imageService.postImage(data)
-            return response && response.status
-        } catch (error) {
-            setError(true)
+    const uploadImage = () => {
+        let fileUpload = file;
+        let keywordsArray = keywords.replace(/ /g,"").split(",")
+        let imageData = {
+            name: name,
+            description: description,
+            copyright: copyright,
+            file: file,
+            keywords: keywordsArray,
+            datePublished: Date.now(),
+            category: category,
+            visibility: visible,
+            archived: archived
         }
-    }*/
+        try {
+            imageService.postImage(fileUpload, imageData)
+                .then(resp => {
+                    console.log(resp)
+                })
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     return (
         <div>
@@ -37,7 +43,7 @@ function UploadPage(props) {
                 <div className="form-group">
                     <label htmlFor="inputName">Nom</label>
                     <input type="text" className="form-control" id="inputName"
-                           placeholder="Nom de l'image" onChange={event => setName(event.target.value)}/>
+                           placeholder="Soleil couchant derrière une montagne..." onChange={event => setName(event.target.value)}/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="inputDescription">Description</label>
@@ -46,7 +52,8 @@ function UploadPage(props) {
                 </div>
                 <div className="form-group">
                     <label className="form-label" htmlFor="imageFile">Fichier image</label>
-                    <input type="file" className="form-control" id="imageFile" onChange={event => setImage(event.target.value)}/>
+                    <input type="file" className="form-control" id="imageFile"
+                           onChange={event => setFile(event.target.value)}/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="inputCategory">Catégorie</label>
@@ -54,12 +61,19 @@ function UploadPage(props) {
                            placeholder="Catégorie de l'image" onChange={event => setCategory(event.target.value)}/>
                 </div>
                 <div className="form-group">
+                    <label htmlFor="inputKeywords">Mots-clé</label>
+                    <input type="text" className="form-control" id="inputKeywords"
+                           placeholder="ville, paysage,..." onChange={event => setKeywords(event.target.value)}/>
+                    <small id="emailHelp" className="form-text text-muted">Ecrivez les mots-clés à la suite séparés par une virgule</small>
+                </div>
+                <div className="form-group">
                     <label htmlFor="inputCopyright">Copyright</label>
                     <input type="text" className="form-control" id="inputCopyright"
                            placeholder="Copyright de l'image" onChange={event => setCopyright(event.target.value)}/>
                 </div>
-                <div style={{marginBottom:10}} className="form-check">
-                    <input type="checkbox" className="form-check-input" id="isVisible" defaultChecked={visible} onChange={() => setVisible(!visible)}/>
+                <div style={{marginBottom: 10}} className="form-check">
+                    <input type="checkbox" className="form-check-input" id="isVisible" defaultChecked={visible}
+                           onChange={() => setVisible(!visible)}/>
                     <label className="form-check-label" htmlFor="isVisible">Publier l'image</label>
                 </div>
                 <button type="submit" className="btn btn-primary">Envoyer</button>
