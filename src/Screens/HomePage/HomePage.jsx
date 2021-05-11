@@ -30,7 +30,9 @@ function HomePage() {
                 <div className="d-inline-flex flex-wrap mt-4">
                     {imageList && currentUser.role === 'User' &&
                         imageList.slice(0, 10).map(image =>
-                            <CardImage image={image} />
+                            <div className="col-4" key={image.id}>
+                                <CardImage image={image} />
+                            </div>
                         )
                     }
 

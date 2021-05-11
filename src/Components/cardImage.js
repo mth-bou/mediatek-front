@@ -38,7 +38,7 @@ export default function CardImage(props) {
                     <Link to={{
                         pathname: "/image/" + id,
                         aboutProps: {
-                            name: name
+                            image: props.image
                         }
                     }}>  Voir plus  </Link>
                 </div>

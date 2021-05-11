@@ -30,21 +30,18 @@ function postImage(data) {
     }
 }
 
-function edit(id, category, nom, url, description, keywords, copyright) {
-    if (typeof (copyright) === 'undefined') copyright = null;
+function edit(id, image) {
     const requestOptions = {
-        method: 'POST',
         headers: authHeader(),
-        body: JSON.stringify({
-            category: category,
-            nom: nom,
-            url: url,
-            description: description,
-            keywords: keywords,
-            copyright: copyright
-        })
     };
-    return fetch(`${config.apiUrl}/images/${id}`, requestOptions).then(handleResponse);
+
+    axios.post(`${config.apiUrl}/images/${id}`, image, requestOptions)
+        .then(res => {
+            return res.data
+        })
+        .catch(err => {
+            return err
+        })
 }
 
 function deleteById(id) {
