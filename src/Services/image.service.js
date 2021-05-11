@@ -1,27 +1,31 @@
-import config from 'config';
-import { authHeader, handleResponse } from "@/Helpers";
+import config from '../../config';
+import {authHeader, handleResponse} from "@/Helpers";
+import axios from "axios";
 
 function getAll() {
-    const requestOptions = { method: 'GET', headers: authHeader() };
-    return fetch(`${config.apiUrl}/images`, requestOptions).then(handleResponse);
+    try {
+        axios.get(`${config.apiUrl}/images`)
+            .then(resp => {
+                return resp.data
+            })
+    } catch (error) {
+        console.log(error)
+    }
 }
 
-function getById(id) {
-    const requestOptions = { method: 'GET', headers: authHeader() };
-    return fetch(`${config.apiUrl}/images/${id}`, requestOptions).then(handleResponse);
-}
-
-const postImage = (data) => {
-    const requestOptions = {
-        method: 'POST',
-        headers: authHeader(),
-        body: data
-    };
-    return fetch(`${config.apiUrl}/images/`, requestOptions).then(handleResponse);
+function postImage(data) {
+    try {
+        axios.post(`${config.apiUrl}/images`, data)
+            .then(resp => {
+                console.log(resp)
+            })
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 function edit(id, category, nom, url, description, keywords, copyright) {
-    if (typeof(copyright) === 'undefined') copyright = null;
+    if (typeof (copyright) === 'undefined') copyright = null;
     const requestOptions = {
         method: 'POST',
         headers: authHeader(),
@@ -38,13 +42,12 @@ function edit(id, category, nom, url, description, keywords, copyright) {
 }
 
 function deleteById(id) {
-    const requestOptions = { method: 'DELETE', headers: authHeader() };
+    const requestOptions = {method: 'DELETE', headers: authHeader()};
     return fetch(`${config.apiUrl}/images/${id}`, requestOptions).then(handleResponse);
 }
 
 export const imageService = {
     getAll,
-    getById,
     postImage,
     edit,
     deleteById,
