@@ -28,7 +28,7 @@ export default function CardImage(props) {
 
     return (
 
-        <div className="col-4">
+        <div>
             {visibility &&
                 <div className="card">
                     <img className="card-img-top" src={data.url} alt={data.description} />
