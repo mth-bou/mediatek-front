@@ -11,29 +11,13 @@ export const userService = {
 };
 
 function getAll() {
-
-    const options = {
-        headers: { 'Access-Control-Allow-Origin': '*'}
-    }
-
-    axios.get(`${config.apiUrl}/users`, options)
-        .then(res => {
-            return res.data
-        })
-        .catch(err => {
-            return err
-        });
+    const requestOptions = { method: 'GET', headers: authHeader() };
+    return fetch(`${config.apiUrl}/users`, requestOptions).then(handleResponse);
 }
 
 function getById(id) {
-
-    axios.get(`${config.apiUrl}/users/${id}`)
-        .then(res => {
-            return res.data
-        })
-        .catch(err => {
-            return err
-        })
+    const requestOptions = { method: 'GET', headers: authHeader() };
+    return fetch(`${config.apiUrl}/users/${id}`, requestOptions).then(handleResponse);
 }
 
 function post(user) {

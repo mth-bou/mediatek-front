@@ -5,7 +5,7 @@ import UserCollapse from '../../Components/user_collapse'
 
 function ManageUsersPage() {
 
-    const [users, setUsers] = useState(userService.getAll())
+    const [users, setUsers] = useState(null)
     const [addUser, setAddUser] = useState(false)
 
     const [username, setUsername] = useState(null)
@@ -17,7 +17,7 @@ function ManageUsersPage() {
     const [open, setOpen] = useState(false);
 
     useEffect(() => {
-        console.log(users);
+        userService.getAll().then(users => setUsers(users));
     }, [])
 
     const dataUser = {
