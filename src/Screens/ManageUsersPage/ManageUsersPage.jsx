@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import Button from 'react-bootstrap/Button'
 import {userService} from '@/Services';
 import UserCollapse from '../../Components/user_collapse'
+import {Role} from "@/Helpers";
 
 function ManageUsersPage() {
 
@@ -20,12 +21,17 @@ function ManageUsersPage() {
         userService.getAll().then(users => setUsers(users));
     }, [])
 
-    const dataUser = {
-        username: username,
-        password: password,
-        firstname: firstName,
-        lastname: lastName,
-        role: isAdmin ? 'Gestionnaire' : 'Utilisateur',
+    const upload = () => {
+        let dataUser = {
+            username: username,
+            password: password,
+            firstname: firstName,
+            name: lastName,
+            roles: ['GESTIONNAIRE'],
+            enabled: true
+        }
+
+        userService.post(dataUser).then(res => console.log(res))
     }
 
     return (
@@ -35,7 +41,7 @@ function ManageUsersPage() {
             <Button style={{margin:10}} onClick={() => setAddUser(!addUser)}>Ajouter un utilisateur</Button>
 
             {addUser &&
-            <form>
+            <form onSubmit={upload}>
                 <div className="form-group">
                     <label htmlFor="inputLastName">Nom</label>
                     <input type="text" className="form-control" id="inputLastName"
