@@ -22,7 +22,7 @@ function getById(id) {
 
 function post(user) {
 
-    axios.post(`${config.apiUrl}/users/`, user)
+    axios.post(`${config.apiUrl}/user`, user)
         .then(res => {
             return res.data
         })
