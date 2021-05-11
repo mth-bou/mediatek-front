@@ -16,12 +16,12 @@ function ImagePage(props) {
 
     const deactivateImage = () => {
         if (image.visible) image.visible = false;
-        imageService.edit(image.id, image.visible).then(image => console.log(image.visible));
+        imageService.edit(image.id, image.visible);
     }
 
     const activateImage = () => {
         if (image.visible === false) image.visible = true;
-        imageService.edit(image.id, image.visible).then(image => console.log(image.visible));
+        imageService.edit(image.id, image.visible);
     }
 
         return (

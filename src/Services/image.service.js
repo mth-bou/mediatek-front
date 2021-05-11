@@ -10,7 +10,10 @@ function getAll() {
     try {
         axios.get(`${config.apiUrl}/images`)
             .then(resp => {
-                return resp.data
+                //return resp.data
+                resp.data.forEach(image => {
+                    console.log(image)
+                })
             })
     } catch (error) {
         console.log(error)
@@ -20,7 +23,8 @@ function getAll() {
 function postImage(data) {
     try {
         axios.post(`${config.apiUrl}/images`, data, {
-            headers: header
+            headers: { 'Access-Control-Allow-Origin': '*' },
+            proxy: { host: 'localhost', port: 8081 }
         })
             .then(resp => {
                 console.log(resp)
@@ -32,12 +36,16 @@ function postImage(data) {
 
 function edit(id, image) {
     const requestOptions = {
-        headers: authHeader(),
+        // To allow CORS Policy
+        headers: { 'Access-Control-Allow-Origin': '*' },
+        proxy: { host: 'localhost', port: 8081 }
     };
 
     axios.post(`${config.apiUrl}/images/${id}`, image, requestOptions)
         .then(res => {
-            return res.data
+            res.data.forEach(image => {
+                console.log(image)
+            })
         })
         .catch(err => {
             return err
