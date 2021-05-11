@@ -20,7 +20,7 @@ function UploadPage(props) {
             description: description,
             copyright: copyright,
             keywords: keywordsArray,
-            datePublished: new Date,
+            datePublished: new Date.toString(),
             category: category,
             visibility: visible,
             archived: archived
@@ -42,33 +42,33 @@ function UploadPage(props) {
                 <div className="form-group">
                     <label htmlFor="inputName">Nom</label>
                     <input type="text" className="form-control" id="inputName"
-                           placeholder="Soleil couchant derrière une montagne..." onChange={event => setName(event.target.value)}/>
+                           placeholder="Soleil couchant..." onChange={event => setName(event.target.value)}/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="inputDescription">Description</label>
                     <input type="text" className="form-control" id="inputDescription"
-                           placeholder="Description de l'image" onChange={event => setDescription(event.target.value)}/>
+                           placeholder="Soleil se couchant dérrière une montagne..." onChange={event => setDescription(event.target.value)}/>
                 </div>
                 <div className="form-group">
                     <label className="form-label" htmlFor="imageFile">Fichier image</label>
-                    <input type="file" className="form-control" id="imageFile"
+                    <input required type="file" className="form-control" id="imageFile"
                            onChange={event => setFile(event.target.value)}/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="inputCategory">Catégorie</label>
                     <input type="text" className="form-control" id="inputCategory"
-                           placeholder="Catégorie de l'image" onChange={event => setCategory(event.target.value)}/>
+                           placeholder="Paysage..." onChange={event => setCategory(event.target.value)}/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="inputKeywords">Mots-clé</label>
                     <input type="text" className="form-control" id="inputKeywords"
-                           placeholder="ville, paysage,..." onChange={event => setKeywords(event.target.value)}/>
+                           placeholder="soleil, paysage,..." onChange={event => setKeywords(event.target.value)}/>
                     <small id="emailHelp" className="form-text text-muted">Ecrivez les mots-clés à la suite séparés par une virgule</small>
                 </div>
                 <div className="form-group">
                     <label htmlFor="inputCopyright">Copyright</label>
                     <input type="text" className="form-control" id="inputCopyright"
-                           placeholder="Copyright de l'image" onChange={event => setCopyright(event.target.value)}/>
+                           placeholder="Rémi Dupont, 2019" onChange={event => setCopyright(event.target.value)}/>
                 </div>
                 <div style={{marginBottom: 10}} className="form-check">
                     <input type="checkbox" className="form-check-input" id="isVisible" defaultChecked={visible}
