@@ -44,7 +44,7 @@ function edit(id, image) {
     axios.post(`${config.apiUrl}/images/${id}`, image, requestOptions)
         .then(res => {
             res.data.forEach(image => {
-                console.log(image)
+                return image
             })
         })
         .catch(err => {

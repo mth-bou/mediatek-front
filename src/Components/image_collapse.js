@@ -1,52 +1,59 @@
 import React, {useState} from "react";
 import Collapse from "react-bootstrap/Collapse";
+import {imageService} from "@/Services";
 
 
-export default function ImageCollapse() {
-    const [name, setName] = useState(props.user.username)
-    const [password, setPassword] = useState(props.user.password)
-    const [firstName, setFirstName] = useState(props.user.firstName)
-    const [lastName, setLastName] = useState(props.user.lastName)
-    const [isAdmin, setAdmin] = useState(null)
+export default function ImageCollapse(props) {
+    const [id, setId] = useState(props.image.id)
+    const [name, setName] = useState(props.image.name)
+    const [description, setDescription] = useState(props.image.description)
+    const [keywords, setKeywords] = useState(props.image.keywords)
+    const [copyright, setCopyright] = useState(props.image.copyright)
 
-    const [open, setOpen] = useState(false);
+    const upload = () => {
+        let image = {
+            name: name,
+            description: description,
+            keywords: keywords,
+            copyright: copyright
+        }
+
+        imageService.edit(id, image).then(res => console.log(res))
+    }
 
     return (
-        <Collapse>
-            <div id="example-collapse-text">
-                <form>
-                    <div className="form-group">
-                        <label htmlFor="inputName">Nom</label>
-                        <input type="text" className="form-control" id="inputName"
-                               value={lastName}
-                               onChange={event => setLastName(event.target.value)}/>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="inputDescription">Description</label>
-                        <input type="text" className="form-control" id="inputDescription"
-                               value={firstName}
-                               onChange={event => setFirstName(event.target.value)}/>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="inputKeywords">Mots-clé</label>
-                        <input type="text" className="form-control" id="inputKeywords"
-                               value={username}
-                               onChange={event => setUsername(event.target.value)}/>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="inputCopyright">Mot de passe</label>
-                        <input type="text" className="form-control" id="inputCopyright"
-                               value={password}
-                               onChange={event => setPassword(event.target.value)}/>
-                    </div>
-                    <div style={{marginBottom: 10}} className="form-check">
-                        <input type="checkbox" className="form-check-input" id="isAdmin"
-                               onChange={() => setAdmin(!isAdmin)} defaultChecked={isAdmin}/>
-                        <label className="form-check-label" htmlFor="isAdmin">Gestionnaire</label>
-                    </div>
-                    <button style={{marginBottom: 7}} type="submit" className="btn btn-primary">Modifier</button>
-                </form>
-            </div>
-        </Collapse>
+        <div>
+            <Collapse in={props.opened}>
+                <div id="example-collapse-text">
+                    <form onSubmit={upload}>
+                        <div className="form-group">
+                            <label htmlFor="inputName">Nom</label>
+                            <input type="text" className="form-control" id="inputName"
+                                   value={name}
+                                   onChange={event => setName(event.target.value)}/>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="inputDescription">Description</label>
+                            <input type="text" className="form-control" id="inputDescription"
+                                   value={description}
+                                   onChange={event => setDescription(event.target.value)}/>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="inputKeywords">Mots-clé (séparés par une virgule)</label>
+                            <input type="text" className="form-control" id="inputKeywords"
+                                   value={keywords}
+                                   onChange={event => setKeywords(event.target.value)}/>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="inputCopyright">Copyright (laisser vide si aucun)</label>
+                            <input type="text" className="form-control" id="inputCopyright"
+                                   value={copyright}
+                                   onChange={event => setCopyright(event.target.value)}/>
+                        </div>
+                        <button style={{marginBottom: 7}} type="submit" className="btn btn-primary">Valider</button>
+                    </form>
+                </div>
+            </Collapse>
+        </div>
     )
 }

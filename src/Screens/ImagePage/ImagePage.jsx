@@ -2,11 +2,13 @@ import React, {useState, useEffect} from 'react';
 import { userService, authenticationService, imageService } from '@/Services';
 import Button from "react-bootstrap/Button";
 import {Role} from "@/Helpers";
+import ImageCollapse from "@/Components/image_collapse";
 
 function ImagePage(props) {
     const [currentUser, setCurrentUser] = useState(authenticationService.currentUserValue)
     const [userFromApi, setUserFromApi] = useState(null)
     const [image, setImage] = useState(props.location.aboutProps.image)
+    const [open, setOpen] = useState(false)
     //const [image, setImage] = useState(props.location.aboutProps.name)
 
     useEffect(()=> {
@@ -39,7 +41,7 @@ function ImagePage(props) {
 
                     {currentUser && currentUser.role === Role.Admin &&
                     <div className="row justify-content-center mt-2">
-                        <Button className="btn btn-alert mr-2">Modifier</Button>
+                        <Button className="btn btn-alert mr-2" onClick={() => setOpen(!open)}>Modifier</Button>
                         {image.visible &&
                             <Button className="btn btn-info mr-2 ml-2" onClick={deactivateImage}>Retirer sa publication</Button>
                         }
@@ -48,6 +50,10 @@ function ImagePage(props) {
                         }
                         <Button className="btn btn-danger ml-2">Supprimer</Button>
                     </div>
+                    }
+                    {
+                        currentUser && currentUser.role === Role.Admin &&
+                        <ImageCollapse image={image} opened={open} />
                     }
 
                     <div className="mt-3 mb-3" style={{fontSize: '22px'}}>
