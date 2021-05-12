@@ -4,13 +4,13 @@ const images = [
         id: 1,
         name: 'sunset',
         url: 'https://cdn.pixabay.com/photo/2016/11/29/04/19/ocean-1867285_960_720.jpg',
-        description: 'Superbe sunset vue de la mer',
+        description: 'Superbe sunset vu de l\'océan',
         visible: true,
         keywords: ['sunset', 'sun', 'beach', 'waves'],
         publishedAt: new Date('2021-05-04'),
         format: '960x720',
         archived: false,
-        copyright: 'Ta mere'
+        copyright: ''
     },
     {
         id: 2,
@@ -22,7 +22,7 @@ const images = [
         publishedAt: new Date('2021-05-07'),
         format: '960x720',
         archived: false,
-        copyright: 'Ta mere'
+        copyright: 'Mathieu'
     },
     {
         id: 3,
@@ -34,7 +34,7 @@ const images = [
         publishedAt: new Date('2021-05-05'),
         format: '960x720',
         archived: false,
-        copyright: 'Ta mere'
+        copyright: 'Clément'
     },
 ]
 

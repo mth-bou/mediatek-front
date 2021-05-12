@@ -10,7 +10,10 @@ function getAll() {
     try {
         axios.get(`${config.apiUrl}/images`)
             .then(resp => {
-                return resp.data
+                //return resp.data
+                resp.data.forEach(image => {
+                    console.log(image)
+                })
             })
     } catch (error) {
         console.log(error)
@@ -20,7 +23,8 @@ function getAll() {
 function postImage(data) {
     try {
         axios.post(`${config.apiUrl}/images`, data, {
-            headers: header
+            headers: { 'Access-Control-Allow-Origin': '*' },
+            proxy: { host: 'localhost', port: 8081 }
         })
             .then(resp => {
                 console.log(resp)
@@ -30,21 +34,22 @@ function postImage(data) {
     }
 }
 
-function edit(id, category, nom, url, description, keywords, copyright) {
-    if (typeof (copyright) === 'undefined') copyright = null;
+function edit(id, image) {
     const requestOptions = {
-        method: 'POST',
-        headers: authHeader(),
-        body: JSON.stringify({
-            category: category,
-            nom: nom,
-            url: url,
-            description: description,
-            keywords: keywords,
-            copyright: copyright
-        })
+        // To allow CORS Policy
+        headers: { 'Access-Control-Allow-Origin': '*' },
+        proxy: { host: 'localhost', port: 8081 }
     };
-    return fetch(`${config.apiUrl}/images/${id}`, requestOptions).then(handleResponse);
+
+    axios.post(`${config.apiUrl}/images/${id}`, image, requestOptions)
+        .then(res => {
+            res.data.forEach(image => {
+                return image
+            })
+        })
+        .catch(err => {
+            return err
+        })
 }
 
 function deleteById(id) {
