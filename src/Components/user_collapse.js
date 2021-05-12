@@ -1,19 +1,20 @@
 import React, {useEffect, useState} from 'react';
 import Collapse from 'react-bootstrap/Collapse'
 import Button from "react-bootstrap/Button";
+import {Role} from '../Helpers/role'
 
 export default function UserCollapse(props) {
 
     const [username, setUsername] = useState(props.user.username)
     const [password, setPassword] = useState(props.user.password)
-    const [firstName, setFirstName] = useState(props.user.firstName)
-    const [lastName, setLastName] = useState(props.user.lastName)
+    const [firstName, setFirstName] = useState(props.user.firstname)
+    const [lastName, setLastName] = useState(props.user.name)
     const [isAdmin, setAdmin] = useState(null)
 
     const [open, setOpen] = useState(false);
 
     useEffect(() => {
-        if (props.user.role === "Admin") {
+        if (props.user.roles[0] === Role.Admin) {
             setAdmin(true)
         } else {
             setAdmin(false)
@@ -27,7 +28,7 @@ export default function UserCollapse(props) {
                     aria-controls="example-collapse-text"
                     aria-expanded={open}
             >
-                {props.user.lastName}&nbsp;{props.user.firstName}&nbsp;[{props.user.role}]
+                {props.user.name}&nbsp;{props.user.firstname}&nbsp;[{props.user.roles[0]}]
             </Button>
             <Collapse in={open}>
                 <div id="example-collapse-text">

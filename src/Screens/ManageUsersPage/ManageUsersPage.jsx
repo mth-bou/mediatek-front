@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import Button from 'react-bootstrap/Button'
 import {userService} from '../../Services/user.service';
-import UserCollapse from '../../Components/user_collapse'
+import axios from 'axios';
+import config from "../../../config";
+import UserCollapse from "@/Components/user_collapse";
 
 function ManageUsersPage() {
 
@@ -15,11 +17,17 @@ function ManageUsersPage() {
     const [isAdmin, setAdmin] = useState(false)
 
     const [open, setOpen] = useState(false);
-/*
-    useEffect(() => {
-        let usersApi = userService.getAll();
-        setUsers(usersApi)
-    }, [])*/
+
+    useEffect(()=>{
+        try {
+            let response = axios.get(`${config.apiUrl}/users`)
+                .then(resp => {
+                    setUsers(resp.data)
+                })
+        } catch (error) {
+            console.log(error)
+        }
+    },)
 
     const upload = () => {
         let dataUser = {
@@ -75,12 +83,12 @@ function ManageUsersPage() {
                     Liste des utilisateurs
                 </div>
                 {users &&
-                <div>/*
-                    {/*{users.map(user =>*/}
-                    {/*    <div style={{margin:10}} key={user.id}>*/}
-                    {/*        <UserCollapse user={user}/>*/}
-                    {/*    </div>*/}
-                    {/*)}*/}
+                <div>
+                    {users.map(user =>
+                        <div style={{margin:10}} key={user.id}>
+                            <UserCollapse user={user}/>
+                        </div>
+                    )}
                 </div>
                 }
             </div>
