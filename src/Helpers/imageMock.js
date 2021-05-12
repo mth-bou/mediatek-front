@@ -4,7 +4,7 @@ const images = [
         id: 1,
         name: 'sunset',
         url: 'https://cdn.pixabay.com/photo/2016/11/29/04/19/ocean-1867285_960_720.jpg',
-        description: 'Superbe sunset vue de la mer',
+        description: 'Superbe sunset vue de l\'océan',
         visible: true,
         keywords: ['sunset', 'sun', 'beach', 'waves'],
         publishedAt: new Date('2021-05-04'),
