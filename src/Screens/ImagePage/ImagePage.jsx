@@ -61,7 +61,7 @@ function ImagePage(props) {
                     </div>
 
                     <div>
-                        <Button className="btn btn-success mr-2">Télécharger l'image</Button>
+                        <Button className="btn btn-success mr-2" onClick={() => console.log(image)}>Télécharger l'image</Button>
                         <Button className="btn btn-info mr-2">Télécharger toutes les images</Button>
                     </div>
                 </div>

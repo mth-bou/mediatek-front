@@ -51,22 +51,22 @@ function ManageUsersPage() {
             <form onSubmit={upload}>
                 <div className="form-group">
                     <label htmlFor="inputLastName">Nom</label>
-                    <input type="text" className="form-control" id="inputLastName"
+                    <input type="text" className="form-control" id="inputLastName" maxLength={15}
                            placeholder="Nom de l'utilisateur" onChange={event => setLastName(event.target.value)}/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="inputFirstName">Prénom</label>
-                    <input type="text" className="form-control" id="inputFirstName"
+                    <input type="text" className="form-control" id="inputFirstName" maxLength={15}
                            placeholder="Prénom de l'utilisateur" onChange={event => setFirstName(event.target.value)}/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="inputUsername">Login</label>
-                    <input type="text" className="form-control" id="inputUsername"
+                    <input type="text" className="form-control" id="inputUsername" maxLength={20}
                            placeholder="Login de l'utilisateur" onChange={event => setUsername(event.target.value)}/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="inputPassword">Mot de passe</label>
-                    <input type="text" className="form-control" id="inputPassword"
+                    <input type="text" className="form-control" id="inputPassword" maxLength={25}
                            placeholder="Mot de passe de l'utilisateur" onChange={event => setPassword(event.target.value)}/>
                 </div>
                 <div style={{marginBottom:10}} className="form-check">

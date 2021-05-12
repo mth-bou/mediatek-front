@@ -35,25 +35,25 @@ export default function UserCollapse(props) {
                     <form>
                         <div className="form-group">
                             <label htmlFor="inputLastName">Nom</label>
-                            <input type="text" className="form-control" id="inputLastName"
+                            <input type="text" className="form-control" id="inputLastName" maxLength={15}
                                    value={lastName}
                                    onChange={event => setLastName(event.target.value)}/>
                         </div>
                         <div className="form-group">
                             <label htmlFor="inputFirstName">Prénom</label>
-                            <input type="text" className="form-control" id="inputFirstName"
+                            <input type="text" className="form-control" id="inputFirstName" maxLength={15}
                                    value={firstName}
                                    onChange={event => setFirstName(event.target.value)}/>
                         </div>
                         <div className="form-group">
                             <label htmlFor="inputUsername">Login</label>
-                            <input type="text" className="form-control" id="inputUsername"
+                            <input type="text" className="form-control" id="inputUsername" maxLength={20}
                                    value={username}
                                    onChange={event => setUsername(event.target.value)}/>
                         </div>
                         <div className="form-group">
                             <label htmlFor="inputPassword">Mot de passe</label>
-                            <input type="text" className="form-control" id="inputPassword"
+                            <input type="text" className="form-control" id="inputPassword" maxLength={25}
                                    value={password}
                                    onChange={event => setPassword(event.target.value)}/>
                         </div>
