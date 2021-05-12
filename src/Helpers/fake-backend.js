@@ -1,10 +1,23 @@
 import { Role } from './'
+import {userService} from '../Services/';
 
 export function configureFakeBackend() {
-    let users = [
+
+    let users = []
+
+    let usersGet = userService.getAll().then(user => {
+        user.map(user2 => {
+            users.push(user2)
+        })
+    })
+
+    let users2 = [
         { id: 1, username: 'admin', password: 'admin', firstName: 'Admin', lastName: 'User', role: Role.Admin },
-        { id: 2, username: 'user', password: 'user', firstName: 'Normal', lastName: 'User', role: Role.User }
+        { id: 2, username: 'user', password: 'user', firstName: 'Normal', lastName: 'User', role: Role.User },
     ];
+
+    console.log(users)
+
     let realFetch = window.fetch;
     window.fetch = function (url, opts) {
         const authHeader = opts.headers['Authorization'];
@@ -23,10 +36,10 @@ export function configureFakeBackend() {
                     return ok({
                         id: user.id,
                         username: user.username,
-                        firstName: user.firstName,
-                        lastName: user.lastName,
-                        role: user.role,
-                        token: `fake-jwt-token.${user.role}`
+                        firstName: user.firstname,
+                        lastName: user.name,
+                        role: user.roles[0],
+                        token: `fake-jwt-token.${user.roles[0]}`
                     });
                 }
 
@@ -39,8 +52,8 @@ export function configureFakeBackend() {
                     let id = parseInt(urlParts[urlParts.length - 1]);
 
                     // only allow normal users access to their own record
-                    const currentUser = users.find(x => x.role === role);
-                    if (id !== currentUser.id && role !== Role.Admin) return unauthorised();
+                    const currentUser = users.find(x => x.roles === role);
+                    //if (id !== currentUser.id && role !== Role.Admin) return unauthorised();
 
                     const user = users.find(x => x.id === id);
                     return ok(user);

@@ -15,10 +15,11 @@ function ManageUsersPage() {
     const [isAdmin, setAdmin] = useState(false)
 
     const [open, setOpen] = useState(false);
-
+/*
     useEffect(() => {
-        userService.getAll().then(users => setUsers(users));
-    }, [])
+        let usersApi = userService.getAll();
+        setUsers(usersApi)
+    }, [])*/
 
     const upload = () => {
         let dataUser = {
@@ -34,6 +35,7 @@ function ManageUsersPage() {
 
     return (
         <div>
+            <Button onClick={()=> console.log(users)}></Button>
             <h1>Gestion des utilisateurs</h1>
             <p>Visualisation / Ajout / Supression</p>
             <Button style={{margin:10}} onClick={() => setAddUser(!addUser)}>Ajouter un utilisateur</Button>
@@ -73,12 +75,12 @@ function ManageUsersPage() {
                     Liste des utilisateurs
                 </div>
                 {users &&
-                <div>
-                    {users.map(user =>
-                        <div style={{margin:10}} key={user.id}>
-                            <UserCollapse user={user}/>
-                        </div>
-                    )}
+                <div>/*
+                    {/*{users.map(user =>*/}
+                    {/*    <div style={{margin:10}} key={user.id}>*/}
+                    {/*        <UserCollapse user={user}/>*/}
+                    {/*    </div>*/}
+                    {/*)}*/}
                 </div>
                 }
             </div>

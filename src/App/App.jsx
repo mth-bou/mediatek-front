@@ -21,7 +21,8 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        authenticationService.currentUser.subscribe(x => this.setState({
+        authenticationService.currentUser.subscribe(x =>
+            this.setState({
             currentUser: x,
             isAdmin: x && x.role === Role.Admin
         }));
@@ -55,8 +56,8 @@ class App extends React.Component {
                         <div className="container">
                                 <div className="d-flex justify-content-center">
                                     <PrivateRoute exact path="/" component={HomePage} />
-                                    <PrivateRoute path="/upload" roles={[Role.Admin]} component={UploadPage} />
-                                    <PrivateRoute path="/manage_users" roles={[Role.Admin]} component={ManageUsersPage} />
+                                    <PrivateRoute path="/upload" roles={Role.Admin} component={UploadPage} />
+                                    <PrivateRoute path="/manage_users" roles={Role.Admin} component={ManageUsersPage} />
                                     <PrivateRoute path="/image/:slug" roles={[Role.Admin, Role.User]} component={ImagePage}/>
                                     <Route path="/login" component={LoginPage} />
                                 </div>
