@@ -41,34 +41,35 @@ function UploadPage(props) {
             <form onSubmit={uploadImage}>
                 <div className="form-group">
                     <label htmlFor="inputName">Nom</label>
-                    <input type="text" className="form-control" id="inputName"
+                    <input type="text" className="form-control" id="inputName" maxLength={25}
                            placeholder="Soleil couchant..." onChange={event => setName(event.target.value)}/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="inputDescription">Description</label>
-                    <input type="text" className="form-control" id="inputDescription"
+                    <input type="text" className="form-control" id="inputDescription" maxLength={30}
                            placeholder="Soleil se couchant dérrière une montagne..." onChange={event => setDescription(event.target.value)}/>
                 </div>
                 <div className="form-group">
                     <label className="form-label" htmlFor="imageFile">Fichier image</label>
-                    <input required type="file" className="form-control" id="imageFile"
+                    <input required type="file" className="form-control" id="imageFile" accept={"image/png,image/jpg"}
                            onChange={event => setFile(event.target.value)}/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="inputCategory">Catégorie</label>
-                    <input type="text" className="form-control" id="inputCategory"
+                    <input type="text" className="form-control" id="inputCategory" maxLength={15}
                            placeholder="Paysage..." onChange={event => setCategory(event.target.value)}/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="inputKeywords">Mots-clé</label>
-                    <input type="text" className="form-control" id="inputKeywords"
+                    <input type="text" className="form-control" id="inputKeywords" maxLength={80}
                            placeholder="soleil, paysage,..." onChange={event => setKeywords(event.target.value)}/>
                     <small id="emailHelp" className="form-text text-muted">Ecrivez les mots-clés à la suite séparés par une virgule</small>
                 </div>
                 <div className="form-group">
                     <label htmlFor="inputCopyright">Copyright</label>
-                    <input type="text" className="form-control" id="inputCopyright"
+                    <input type="text" className="form-control" id="inputCopyright" maxLength={25}
                            placeholder="Rémi Dupont, 2019" onChange={event => setCopyright(event.target.value)}/>
+                    <small id="emailHelp" className="form-text text-muted">Laisser vide si aucun</small>
                 </div>
                 <div style={{marginBottom: 10}} className="form-check">
                     <input type="checkbox" className="form-check-input" id="isVisible" defaultChecked={visible}

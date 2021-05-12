@@ -28,27 +28,29 @@ export default function ImageCollapse(props) {
                     <form onSubmit={upload}>
                         <div className="form-group">
                             <label htmlFor="inputName">Nom</label>
-                            <input type="text" className="form-control" id="inputName"
+                            <input type="text" className="form-control" id="inputName" maxLength={25}
                                    value={name}
                                    onChange={event => setName(event.target.value)}/>
                         </div>
                         <div className="form-group">
                             <label htmlFor="inputDescription">Description</label>
-                            <input type="text" className="form-control" id="inputDescription"
+                            <input type="text" className="form-control" id="inputDescription" maxLength={30}
                                    value={description}
                                    onChange={event => setDescription(event.target.value)}/>
                         </div>
                         <div className="form-group">
-                            <label htmlFor="inputKeywords">Mots-clé (séparés par une virgule)</label>
-                            <input type="text" className="form-control" id="inputKeywords"
+                            <label htmlFor="inputKeywords">Mots-clé</label>
+                            <input type="text" className="form-control" id="inputKeywords" maxLength={80}
                                    value={keywords}
                                    onChange={event => setKeywords(event.target.value)}/>
+                            <small id="emailHelp" className="form-text text-muted">Ecrivez les mots-clés à la suite séparés par une virgule</small>
                         </div>
                         <div className="form-group">
-                            <label htmlFor="inputCopyright">Copyright (laisser vide si aucun)</label>
-                            <input type="text" className="form-control" id="inputCopyright"
+                            <label htmlFor="inputCopyright">Copyright</label>
+                            <input type="text" className="form-control" id="inputCopyright" maxLength={25}
                                    value={copyright}
                                    onChange={event => setCopyright(event.target.value)}/>
+                            <small id="emailHelp" className="form-text text-muted">Laisser vide si aucun</small>
                         </div>
                         <button style={{marginBottom: 7}} type="submit" className="btn btn-primary">Valider</button>
                     </form>
