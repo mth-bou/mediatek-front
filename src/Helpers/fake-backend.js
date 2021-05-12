@@ -18,7 +18,6 @@ export function configureFakeBackend() {
 
     console.log(users)
 
-
     let realFetch = window.fetch;
     window.fetch = function (url, opts) {
         const authHeader = opts.headers['Authorization'];
@@ -37,10 +36,10 @@ export function configureFakeBackend() {
                     return ok({
                         id: user.id,
                         username: user.username,
-                        firstName: user.firstName,
-                        lastName: user.lastName,
-                        role: user.roles,
-                        token: `fake-jwt-token.${user.roles}`
+                        firstName: user.firstname,
+                        lastName: user.name,
+                        role: user.roles[0],
+                        token: `fake-jwt-token.${user.roles[0]}`
                     });
                 }
 

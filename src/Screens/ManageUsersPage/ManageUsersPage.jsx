@@ -15,11 +15,11 @@ function ManageUsersPage() {
     const [isAdmin, setAdmin] = useState(false)
 
     const [open, setOpen] = useState(false);
-
+/*
     useEffect(() => {
         let usersApi = userService.getAll();
         setUsers(usersApi)
-    }, [])
+    }, [])*/
 
     const upload = () => {
         let dataUser = {
