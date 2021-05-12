@@ -16,8 +16,6 @@ export function configureFakeBackend() {
         { id: 2, username: 'user', password: 'user', firstName: 'Normal', lastName: 'User', role: Role.User },
     ];
 
-    console.log(users)
-
     let realFetch = window.fetch;
     window.fetch = function (url, opts) {
         const authHeader = opts.headers['Authorization'];

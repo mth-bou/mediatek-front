@@ -15,8 +15,6 @@ function HomePage() {
         //imageService.getAll().then(res => setImageList(res));
     }, [])
 
-    console.log(userFromApi)
-
         return (
             <div>
                 <div style={{background:'#E9ECEF', textAlign: 'center'}}>
