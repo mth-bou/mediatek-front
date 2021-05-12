@@ -43,7 +43,6 @@ function ManageUsersPage() {
 
     return (
         <div>
-            <Button onClick={()=> console.log(users)}></Button>
             <h1>Gestion des utilisateurs</h1>
             <p>Visualisation / Ajout / Supression</p>
             <Button style={{margin:10}} onClick={() => setAddUser(!addUser)}>Ajouter un utilisateur</Button>
