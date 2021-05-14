@@ -8,12 +8,9 @@ const header = {
 
 function getAll() {
     try {
-        axios.get(`${config.apiUrl}/images`)
+        let response = axios.get(`${config.apiUrl}/images`)
             .then(resp => {
-                //return resp.data
-                resp.data.forEach(image => {
-                    console.log(image)
-                })
+                return resp.data
             })
     } catch (error) {
         console.log(error)
@@ -22,10 +19,9 @@ function getAll() {
 
 function postImage(data) {
     try {
-        axios.post(`${config.apiUrl}/images`, data, {
-            headers: { 'Access-Control-Allow-Origin': '*' },
-            proxy: { host: 'localhost', port: 8081 }
-        })
+        axios.post(`${config.apiUrl}/images`, data,{
+            headers:header
+        } )
             .then(resp => {
                 console.log(resp)
             })
