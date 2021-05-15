@@ -30,32 +30,31 @@ function postImage(data) {
     }
 }
 
-function edit(id, image) {
-    const requestOptions = {
-        // To allow CORS Policy
-        headers: { 'Access-Control-Allow-Origin': '*' },
-        proxy: { host: 'localhost', port: 8081 }
-    };
-
-    axios.post(`${config.apiUrl}/images/${id}`, image, requestOptions)
-        .then(res => {
-            res.data.forEach(image => {
-                return image
+function editImage(data) {
+    try {
+        axios.put(`${config.apiUrl}/images/edit`, data)
+            .then(resp => {
+                console.log(resp)
             })
-        })
-        .catch(err => {
-            return err
-        })
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 function deleteById(id) {
-    const requestOptions = {method: 'DELETE', headers: authHeader()};
-    return fetch(`${config.apiUrl}/images/${id}`, requestOptions).then(handleResponse);
+    try {
+        axios.delete(`${config.apiUrl}/images/?id=${id}`)
+            .then(res => {
+                console.log(res)
+            })
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 export const imageService = {
     getAll,
     postImage,
-    edit,
+    editImage,
     deleteById,
 };

@@ -20,6 +20,7 @@ function UploadPage(props) {
         formData.append('keywords', keywordsString)
         formData.append('description', description)
         formData.append('category', category)
+        formData.append('copyright', copyright)
         formData.append('visibility', visible)
         formData.append('archived', archived)
         try {
@@ -40,7 +41,7 @@ function UploadPage(props) {
                 </div>
                 <div className="form-group">
                     <label htmlFor="inputDescription">Description</label>
-                    <input type="text" className="form-control" id="inputDescription" maxLength={30}
+                    <input required type="text" className="form-control" id="inputDescription" maxLength={30}
                            placeholder="Soleil se couchant dérrière une montagne..."
                            onChange={event => setDescription(event.target.value)}/>
                 </div>
@@ -56,16 +57,15 @@ function UploadPage(props) {
                 </div>
                 <div className="form-group">
                     <label htmlFor="inputKeywords">Mots-clé</label>
-                    <input type="text" className="form-control" id="inputKeywords" maxLength={80}
+                    <input required type="text" className="form-control" id="inputKeywords" maxLength={80}
                            placeholder="soleil, paysage,..." onChange={event => setKeywords(event.target.value)}/>
                     <small id="emailHelp" className="form-text text-muted">Ecrivez les mots-clés à la suite séparés par
                         une virgule</small>
                 </div>
                 <div className="form-group">
                     <label htmlFor="inputCopyright">Copyright</label>
-                    <input type="text" className="form-control" id="inputCopyright" maxLength={25}
+                    <input required type="text" className="form-control" id="inputCopyright" maxLength={25}
                            placeholder="Rémi Dupont, 2019" onChange={event => setCopyright(event.target.value)}/>
-                    <small id="emailHelp" className="form-text text-muted">Laisser vide si aucun</small>
                 </div>
                 <div style={{marginBottom: 10}} className="form-check">
                     <input type="checkbox" className="form-check-input" id="isVisible" defaultChecked={visible}
