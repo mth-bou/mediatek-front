@@ -8,7 +8,6 @@ class LoginPage extends React.Component {
     constructor(props) {
         super(props);
 
-        // redirect to home if already logged in
         if (authenticationService.currentUserValue) { 
             this.props.history.push('/');
         }
@@ -18,8 +17,8 @@ class LoginPage extends React.Component {
         return (
             <div>
                 <div className="alert alert-info">
-                    <strong>Normal User</strong> - U: user P: user<br />
-                    <strong>Administrator</strong> - U: admin P: admin
+                    <strong>Utilisateur</strong> - login : utilisateur mdp : utilisateur<br />
+                    <strong>Admin</strong> - login : nicolas mdp : nicolas
                 </div>
                 <h2>Login</h2>
                 <Formik
@@ -48,12 +47,12 @@ class LoginPage extends React.Component {
                     render={({ errors, status, touched, isSubmitting }) => (
                         <Form>
                             <div className="form-group">
-                                <label htmlFor="username">Username</label>
+                                <label htmlFor="username">Login</label>
                                 <Field name="username" type="text" className={'form-control' + (errors.username && touched.username ? ' is-invalid' : '')} />
                                 <ErrorMessage name="username" component="div" className="invalid-feedback" />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="password">Password</label>
+                                <label htmlFor="password">Mdp</label>
                                 <Field name="password" type="password" className={'form-control' + (errors.password && touched.password ? ' is-invalid' : '')} />
                                 <ErrorMessage name="password" component="div" className="invalid-feedback" />
                             </div>

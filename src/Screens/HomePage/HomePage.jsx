@@ -1,9 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Role} from '../../Helpers'
-import {userService, authenticationService, imageService} from '@/Services';
+import {userService, authenticationService} from '@/Services';
 import CardImage from "@/Components/cardImage";
-import imageMock from "@/Helpers/imageMock";
-import Button from "react-bootstrap/Button";
 import axios from "axios";
 import config from "../../../config";
 
@@ -28,7 +26,6 @@ function HomePage() {
     return (
         <div>
             <div style={{background: '#E9ECEF', textAlign: 'center'}}>
-                <Button onClick={() => console.log(imageList)}/>
                 <h1 className="text-center">Bienvenue sur Mediatek</h1>
                 <p>Une application qui vous permet de gérer une banque d'images comme vous le souhaitez</p>
                 <div>
@@ -61,7 +58,5 @@ function HomePage() {
         </div>
     );
 }
-
-const imageListStyle = {}
 
 export {HomePage};

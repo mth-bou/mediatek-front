@@ -18,7 +18,7 @@ function ManageUsersPage() {
 
     const [open, setOpen] = useState(false);
 
-    useEffect(()=>{
+    useEffect(() => {
         try {
             let response = axios.get(`${config.apiUrl}/users`)
                 .then(resp => {
@@ -45,7 +45,7 @@ function ManageUsersPage() {
         <div>
             <h1>Gestion des utilisateurs</h1>
             <p>Visualisation / Ajout / Supression</p>
-            <Button style={{margin:10}} onClick={() => setAddUser(!addUser)}>Ajouter un utilisateur</Button>
+            <Button style={{margin: 10}} onClick={() => setAddUser(!addUser)}>Ajouter un utilisateur</Button>
 
             {addUser &&
             <form onSubmit={upload}>
@@ -67,14 +67,15 @@ function ManageUsersPage() {
                 <div className="form-group">
                     <label htmlFor="inputPassword">Mot de passe</label>
                     <input type="text" className="form-control" id="inputPassword" maxLength={25}
-                           placeholder="Mot de passe de l'utilisateur" onChange={event => setPassword(event.target.value)}/>
+                           placeholder="Mot de passe de l'utilisateur"
+                           onChange={event => setPassword(event.target.value)}/>
                 </div>
-                <div style={{marginBottom:10}} className="form-check">
+                <div style={{marginBottom: 10}} className="form-check">
                     <input type="checkbox" className="form-check-input" id="isAdmin"
                            onChange={() => setAdmin(!isAdmin)}/>
                     <label className="form-check-label" htmlFor="isAdmin">Gestionnaire</label>
                 </div>
-                <button style={{textAlign:'center'}} type="submit" className="btn btn-primary">Envoyer</button>
+                <button style={{textAlign: 'center'}} type="submit" className="btn btn-primary">Envoyer</button>
             </form>
             }
             <div>
@@ -84,7 +85,7 @@ function ManageUsersPage() {
                 {users &&
                 <div>
                     {users.map(user =>
-                        <div style={{margin:10}} key={user.id}>
+                        <div style={{margin: 10}} key={user.id}>
                             <UserCollapse user={user}/>
                         </div>
                     )}

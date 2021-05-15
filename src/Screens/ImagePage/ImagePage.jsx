@@ -30,7 +30,7 @@ function ImagePage(props) {
                     <h1 className="mb-4 text-uppercase">{image.name}</h1>
                     <img className="img-fluid" src={`data:image/jpeg;base64,${image.image}`} alt={image.description}/>
                 </div>
-                <div style={{}} className="row">
+                <div className="row">
                     <div className="col-sm">
                         <div className="mt-3 mb-3" style={{fontSize: '22px'}}>
                             <p className="text-left"><strong>Informations sur l'image :</strong></p>

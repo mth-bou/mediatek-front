@@ -1,5 +1,4 @@
 import config from '../../config';
-import {authHeader, handleResponse} from "@/Helpers";
 import axios from "axios";
 
 const header = {
@@ -19,9 +18,9 @@ function getAll() {
 
 function postImage(data) {
     try {
-        axios.post(`${config.apiUrl}/images`, data,{
-            headers:header
-        } )
+        axios.post(`${config.apiUrl}/images`, data, {
+            headers: header
+        })
             .then(resp => {
                 console.log(resp)
             })
