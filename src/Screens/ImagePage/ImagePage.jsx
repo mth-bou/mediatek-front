@@ -9,11 +9,10 @@ function ImagePage(props) {
     const [userFromApi, setUserFromApi] = useState(null)
     const [image, setImage] = useState(props.location.aboutProps.image)
     const [open, setOpen] = useState(false)
-    //const [image, setImage] = useState(props.location.aboutProps.name)
+    const [analysis, setAnalysis] = useState(JSON.parse(props.location.aboutProps.image.analysis))
 
     useEffect(() => {
         userService.getById(currentUser.id).then(userFromApi => setUserFromApi(userFromApi));
-        //imageService.getAll().then(res => setImageList(res));
     }, [])
 
     const deleteImage = () => {
@@ -31,16 +30,34 @@ function ImagePage(props) {
                     <h1 className="mb-4 text-uppercase">{image.name}</h1>
                     <img className="img-fluid" src={`data:image/jpeg;base64,${image.image}`} alt={image.description}/>
                 </div>
+                <div style={{}} className="row">
+                    <div className="col-sm">
+                        <div className="mt-3 mb-3" style={{fontSize: '22px'}}>
+                            <p className="text-left"><strong>Informations sur l'image :</strong></p>
+                            <p>Nom : {image.name}</p>
+                            <p>Description : {image.description}</p>
+                            <p>Catégorie : {image.category}</p>
+                            <p>Mots-clé : {image.keywords}</p>
+                            <p>Copyright : {image.copyright}</p>
+                        </div>
+                    </div>
+                    <div className="col-sm">
+                        <div className="mt-3 mb-3" style={{fontSize: '22px'}}>
+                            <p className="text-left"><strong>Analyse :</strong></p>
+                            {
+                                analysis.Labels.map((data, i) => {
+                                    return (
+                                        <div key={i} className="row">
+                                            <p>{data.Name}&nbsp;</p>
+                                            <p>({Math.round(data.Confidence)}%)</p>
+                                        </div>
+                                    )
 
-                <div className="mt-3 mb-3" style={{fontSize: '22px'}}>
-                    <p className="text-left"><strong>Informations sur l'image :</strong></p>
-                    <p>Nom : {image.name}</p>
-                    <p>Description : {image.description}</p>
-                    <p>Catégorie : {image.category}</p>
-                    <p>Mots-clé : {image.keywords}</p>
-                    <p>Copyright : {image.copyright}</p>
+                                })
+                            }
+                        </div>
+                    </div>
                 </div>
-
                 {currentUser && currentUser.role === Role.Admin &&
                 <div className="row justify-content-center mt-2">
                     <Button className="btn btn-alert mr-2" onClick={() => setOpen(!open)}>Modifier</Button>
