@@ -69,15 +69,14 @@ function ImagePage(props) {
                     <ImageCollapse image={image} opened={open}/>
                 }
 
-                <div className="mt-3 mb-3" style={{fontSize: '22px'}}>
+{/*                <div className="mt-3 mb-3" style={{fontSize: '22px'}}>
                     <p className="text-left"><strong>Téléchargements :</strong></p>
                 </div>
 
                 <div>
-                    <Button className="btn btn-success mr-2" onClick={() => console.log(image)}>Télécharger
+                    <Button className="btn btn-success mr-2" onClick={()=>image.file}>Télécharger
                         l'image</Button>
-                    <Button className="btn btn-info mr-2">Télécharger toutes les images</Button>
-                </div>
+                </div>*/}
             </div>
         </div>
     );
