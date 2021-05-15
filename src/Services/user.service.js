@@ -1,11 +1,13 @@
 import config from '../../config';
 import axios from 'axios';
-import { authHeader, handleResponse } from '@/Helpers';
+import {authHeader, handleResponse} from '@/Helpers';
+
+const header = {
+    'Content-Type': 'multipart/form-data'
+}
 
 export const userService = {
     getAll,
-    getAllUsers,
-    getAllUsers2,
     getById,
     post,
     edit,
@@ -13,29 +15,13 @@ export const userService = {
 };
 
 function getAll() {
-    const requestOptions = { method: 'GET', headers: authHeader() };
+    const requestOptions = {method: 'GET', headers: authHeader()};
     return fetch(`${config.apiUrl}/users`, requestOptions).then(handleResponse);
 }
 
 function getById(id) {
-    const requestOptions = { method: 'GET', headers: authHeader() };
+    const requestOptions = {method: 'GET', headers: authHeader()};
     return fetch(`${config.apiUrl}/users/${id}`, requestOptions).then(handleResponse);
-}
-
-function getAllUsers2() {
-    const requestOptions = { method: 'GET', headers: authHeader() };
-     return fetch(`${config.apiUrl}/users`, requestOptions).then(handleResponse)
-}
-
-function getAllUsers() {
-    try {
-        let response = axios.get(`${config.apiUrl}/users`)
-            .then(resp => {
-               return resp.data
-            })
-    } catch (error) {
-        console.log(error)
-    }
 }
 
 function post(user) {
@@ -51,7 +37,9 @@ function post(user) {
 
 function edit(id, user) {
 
-    axios.put(`${config.apiUrl}/users/${id}`, user)
+    axios.put(`${config.apiUrl}/users/${id}`, user, {
+        headers:header
+    } )
         .then(res => {
             return res.data
         })
@@ -61,12 +49,12 @@ function edit(id, user) {
 }
 
 function deleteById(id) {
-
-    axios.delete(`${config.apiUrl}/users/${id}`)
-        .then(res => {
-            return res.data
+    try {
+        axios.delete(`${config.apiUrl}/users/id?id=${id}`)
+            .then(res => {
+            console.log(res)
         })
-        .catch(err => {
-            return err
-        })
+    } catch (error) {
+        console.log(error)
+    }
 }

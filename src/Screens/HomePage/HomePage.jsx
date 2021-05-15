@@ -42,7 +42,7 @@ function HomePage() {
             <div className="d-inline-flex flex-wrap mt-4">
                 {imageList && currentUser.role === Role.User &&
                 imageList.slice(0, 10).map(image =>
-                    !image.visibility &&
+                    image.visibility &&
                     <div className="col-4" key={image.id}>
                         <CardImage image={image}/>
                     </div>
@@ -52,9 +52,9 @@ function HomePage() {
                 {
                     imageList && currentUser.role === Role.Admin &&
                     imageList.map(image =>
-                                <div className="col-4" key={image.id}>
-                                    <CardImage image={image}/>
-                                </div>
+                        <div className="col-4" key={image.id}>
+                            <CardImage image={image}/>
+                        </div>
                     )
                 }
             </div>

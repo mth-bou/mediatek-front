@@ -31,7 +31,7 @@ function ImagePage(props) {
                 <div style={{background:'#E9ECEF'}}>
                     <div style={{textAlign: 'center'}}>
                         <h1 className="mb-4 text-uppercase">{image.name}</h1>
-                        <img className="img-fluid" src={image.url}  alt={image.description} />
+                        <img className="img-fluid" src={`data:image/jpeg;base64,${image.image}`} alt={image.description} />
                     </div>
 
                     <div className="mt-3 mb-3" style={{fontSize: '22px'}}>

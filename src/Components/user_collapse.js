@@ -2,9 +2,11 @@ import React, {useEffect, useState} from 'react';
 import Collapse from 'react-bootstrap/Collapse'
 import Button from "react-bootstrap/Button";
 import {Role} from '../Helpers/role'
+import {userService} from "@/Services";
 
 export default function UserCollapse(props) {
 
+    const [id, setId] = useState(props.user.id)
     const [username, setUsername] = useState(props.user.username)
     const [password, setPassword] = useState(props.user.password)
     const [firstName, setFirstName] = useState(props.user.firstname)
@@ -20,6 +22,14 @@ export default function UserCollapse(props) {
             setAdmin(false)
         }
     }, [])
+
+    const deleteUser = () => {
+        try {
+            userService.deleteById(id)
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     return (
         <div>
@@ -64,7 +74,7 @@ export default function UserCollapse(props) {
                         </div>
                         <button style={{marginBottom: 7}} type="submit" className="btn btn-primary">Modifier</button>
                     </form>
-                    <button style={{backgroundColor: 'red', borderColor: 'red', marginBottom: 15}}
+                    <button onClick={deleteUser} style={{backgroundColor: 'red', borderColor: 'red', marginBottom: 15}}
                             className="btn btn-secondary">Supprimer
                     </button>
                 </div>
