@@ -33,7 +33,6 @@ function HomePage() {
     return (
         <div>
             <div style={{background: '#E9ECEF', textAlign: 'center'}}>
-                <Button onClick={() => console.log(imageListSorted)}></Button>
                 <h1 className="text-center">Bienvenue sur Mediatek</h1>
                 <p>Une application qui vous permet de gérer une banque d'images comme vous le souhaitez</p>
                 <div>
