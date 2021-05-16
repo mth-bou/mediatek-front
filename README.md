@@ -1,0 +1,3 @@
+- Git clone
+- Npm install
+- Npm start
