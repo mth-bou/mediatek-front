@@ -39,6 +39,15 @@ function ImagePage(props) {
                             <p>Catégorie : {image.category}</p>
                             <p>Mots-clé : {image.keywords}</p>
                             <p>Copyright : {image.copyright}</p>
+                            {
+                                currentUser && currentUser.role === Role.Admin && image.visibility &&
+                                    <p>Visible : Oui</p>
+                            }
+                            {
+                                currentUser && currentUser.role === Role.Admin && !image.visibility &&
+                                <p>Visible : Non</p>
+                            }
+
                         </div>
                     </div>
                     <div className="col-sm">
@@ -52,7 +61,6 @@ function ImagePage(props) {
                                             <p>({Math.round(data.Confidence)}%)</p>
                                         </div>
                                     )
-
                                 })
                             }
                         </div>
